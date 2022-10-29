@@ -63,7 +63,6 @@ if typeGame:
     player1 = 'ЛаПа'  # input("Ведите имя игрока: ")
     player2 = 'Контер'  # input("Ведите имя игрока: ")
 
-    name = ''
     if movePlayers == 0:
         player1, player2 = player2, player1
         movePlayers = 1
@@ -81,9 +80,11 @@ if typeGame:
     PrintWin(candy, movePlayers, typeGame)
 else:
     print("PvE")  # PVP
-    player1 = 'Лапа'  # input("Ведите имя игрока: ")
-
-    PrintGoFirst(player1)
+    player1 = 'ЛаПа'  # input("Ведите имя игрока: ")
+    if movePlayers == 0:
+        PrintGoFirst('Bot')
+    else:
+        PrintGoFirst(player1)
     if movePlayers == 0:
         while candy > 28:
             if movePlayers == 0:
