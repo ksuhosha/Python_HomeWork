@@ -13,6 +13,7 @@ def new_game():
     listStep = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
     return listStep
 
+
 bot = telebot.TeleBot("5969848738:AAExP_zWgVn2w_TViuc9giRMHaUhKlrCqik")
 
 
@@ -68,11 +69,6 @@ def start_game(message):
             bot.reply_to(message, f"{message.from_user.first_name} создал игру, нужен еще 1 игрок нажми /start")
 
 
-def new_game():
-    user_dict.clear()
-    user_name_dict.clear()
-
-
 def start(message):
     markup = types.InlineKeyboardMarkup(row_width=3)
     button1 = types.InlineKeyboardButton(listStep[0][0], callback_data='0')
@@ -125,7 +121,7 @@ def callback(call):
 
 def win(i, call):
     global listStep
-    row = int(int(call.data)/3)
+    row = int(int(call.data) / 3)
     col = int(int(call.data) % 3)
     if call.from_user.id != user_dict[i % 2]:
         bot.answer_callback_query(callback_query_id=call.id, text="Не ты ходишь")
@@ -148,8 +144,8 @@ def win(i, call):
             elif i == 8:
                 bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='ничья!')
                 listStep = new_game()
-    if len(user_dict.keys())>0:
-            start(call.message)
+    if len(user_dict.keys()) > 0:
+        start(call.message)
 
 
 bot.infinity_polling()
